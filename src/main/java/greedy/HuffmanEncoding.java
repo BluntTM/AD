@@ -11,7 +11,7 @@ public class HuffmanEncoding {
     public static void main(String[] args) {
         String str = "hi nerd";
         char[] chars = str.toCharArray();
-        double[] frequences = new double[]{ 0.22, 0.06, 0.17, 0.23, 0.02, 0.17, 0.13 };
+        double[] frequences = HuffmanEncoding.determineFrequencies(chars);
         HuffmanEncoding huffman = HuffmanEncoding.create(chars, frequences, '0', '1');
         System.out.println(huffman);
 
@@ -36,6 +36,23 @@ public class HuffmanEncoding {
         this.characterMap = characterMap;
         this.a = a;
         this.b = b;
+    }
+
+    public static double[] determineFrequencies(char[] chars) {
+        double[] frequencies = new double[chars.length];
+
+        Map<Character, Double> cache = new HashMap<>();
+        for (int i = 0; i < chars.length; i++) {
+            frequencies[i] = cache.computeIfAbsent(chars[i], key -> {
+                int count = 0;
+                for (char c : chars) {
+                    if (key == c) count += 1;
+                }
+                return (double) count / chars.length;
+            });
+        }
+
+        return frequencies;
     }
 
     public static HuffmanEncoding create(char[] chars, double[] frequencies, char a, char b) {
