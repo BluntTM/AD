@@ -11,6 +11,12 @@ public class TravellingSalesman {
         System.out.println(solve(n, P, Q));
     }
 
+    /**
+     * @param n the number of days
+     * @param P the profits that can be made on day 1 through n on location P are stored in P[1] through P[n].
+     * @param Q the profits that can be made on day 1 through n on location Q are stored in Q[1] through Q[n].
+     * @return the maximum obtainable profit.
+     */
     public static int solve(int n, int[] P, int[] Q) {
         int[][] mem = new int[2][n + 1];
 

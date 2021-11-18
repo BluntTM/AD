@@ -2,10 +2,16 @@ package dynamic_programming.level4;
 
 import java.util.function.BiFunction;
 
+import static utils.Assertions.assertEquals;
+
 public class SequenceAligning {
 
     public static void main(String[] args) {
-        System.out.println(solve("kitten", "sitting"));
+        {
+            String a = "kitten";
+            String b = "sitting";
+            assertEquals(3, solve(a, b));
+        }
     }
 
     public static int solve(String firstString, String secondString) {
